@@ -3,21 +3,15 @@ import { ServiceCard } from "../components";
 
 const Services = () => {
   return (
-    <section className='max-container flex justify-center flex-wrap gap-9'>
+    <section
+      id="services"
+      className="max-container grid grid-cols-1 md:grid-cols-3 gap-6"
+    >
       {services.map((service) => (
         <ServiceCard key={service.label} {...service} />
       ))}
     </section>
-  )
-}
+  );
+};
 
-export default Services
-
-
-// Example service[s] 
-// export const services = [
-//   {
-//     imgURL: truckFast,
-//     label: "Free shipping",
-//     subtext: "Enjoy seamless shopping with our complimentary shipping service."
-//   },
+export default Services;

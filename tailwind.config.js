@@ -22,15 +22,21 @@ export default {
       },
 
       fontFamily: {
-        palanquin: ['Palanquin', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
+        palanquin: ['Syne', 'sans-serif'],
+        montserrat: ['Plus Jakarta Sans', 'sans-serif'],
+        display: ['Syne', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        'primary': "#ECEEFF",
-        "coral-red": "#FF6452",
-        "slate-gray": "#6D6D6D",
-        "pale-blue": "#F5F6FF",
-        "white-400": "rgba(255, 255, 255, 0.80)"
+        'primary': "#F1F1EE",
+        "coral-red": "#E63926",
+        "slate-gray": "#52525B",
+        "pale-blue": "#F1F1EE",
+        "white-400": "rgba(255, 255, 255, 0.75)",
+        "canvas": "#F8F8F6",
+        "surface": "#F1F1EE",
+        "ink": "#111113",
       },
       boxShadow: {
         '3xl': '0 10px 40px rgba(0, 0, 0, 0.1)'

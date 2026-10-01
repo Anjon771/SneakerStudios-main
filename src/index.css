@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,52 +9,62 @@
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #F8F8F6;
+  color: #111113;
+}
+
 @layer components {
   .max-container {
-    max-width: 1440px;
+    max-width: 1360px;
     margin: 0 auto;
   }
 
   .input {
-    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+    @apply sm:flex-1 max-sm:w-full text-sm leading-normal text-zinc-900 bg-transparent pl-4 max-sm:p-4 outline-none border-none;
   }
 }
 
 @layer utilities {
   .padding {
-    @apply sm:px-16 px-8 sm:py-24 py-12;
+    @apply sm:px-12 px-6 sm:py-20 py-14;
   }
 
   .padding-x {
-    @apply sm:px-16 px-8;
+    @apply sm:px-12 px-6;
   }
 
   .padding-y {
-    @apply sm:py-24 py-12;
+    @apply sm:py-20 py-14;
   }
 
   .padding-l {
-    @apply sm:pl-16 pl-8;
+    @apply sm:pl-12 pl-6;
   }
 
   .padding-r {
-    @apply sm:pr-16 pr-8;
+    @apply sm:pr-12 pr-6;
   }
 
   .padding-t {
-    @apply sm:pt-24 pt-12;
+    @apply sm:pt-20 pt-14;
   }
 
   .padding-b {
-    @apply sm:pb-24 pb-12;
+    @apply sm:pb-20 pb-14;
   }
 
   .info-text {
-    @apply font-montserrat text-slate-gray text-lg leading-7;
+    @apply font-sans text-zinc-600 text-base leading-relaxed;
   }
 
   .fade-in {
-    animation: fadeIn 800ms ease;
+    animation: fadeIn 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 
   @keyframes fadeIn {

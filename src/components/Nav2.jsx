@@ -1,85 +1,135 @@
 import { useState } from "react";
-import headerLogo from "../assets/images/header-logo.svg";
 import { hamburger, close } from "../assets/icons";
 import { navLinks } from "../constants";
-import github  from "../assets/icons/github.svg"; // or "../assets/images" if it's in images
 
-const Nav = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+const Nav = ({ cartCount = 0, onOpenCart, onOpenSizeGuide }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    return (
-        // remove absolute and add top-0, shadow-md to make bg visible and not transparent
-        <header className="padding-x py-6 absolute z-50 w-full ">
-            <nav className="flex items-center justify-between max-container">
+  return (
+    <header className="sticky top-0 z-40 w-full h-16 bg-[#F8F8F6]/95 backdrop-blur-md border-b border-zinc-200/80 padding-x">
+      <div className="max-container h-full flex items-center justify-between gap-6">
+        {/* Zone 1: Single text element wordmark in display face */}
+        <a
+          href="#home"
+          className="font-display text-lg font-bold tracking-tight text-[#111113] whitespace-nowrap shrink-0"
+        >
+          NIKE × YB STUDIOS
+        </a>
 
-                {/* Comment this if headerLogo not using..in another app */}
-                <a href="#home">
-                    <img src={headerLogo} alt="Logo" width={130} height={29} />
-                </a>
-
-                {/* Desktop Menu */}
-                {/* <ul className="hidden lg:flex justify-center items-center gap-12"> */}
-                <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden">
-                    {navLinks.map((item) => (
-                        <li key={item.label}>
-                            <a
-                                href={item.href}
-                                className="font-montserrat font-medium text-lg text-slate-gray hover:text-black transition"
-                            >
-                                {item.label}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-
-                {/* Hamburger for Mobile */}
-                {/* <div className="lg:hidden"> */}
-                <div className="hidden max-lg:block absolute right-6 top-6">
-                    <button onClick={() => setMenuOpen(true)}>
-                        <img src={hamburger} alt="menu" width={25} height={25} />
-                    </button>
-                </div>
-            </nav>
-
-            {/* Fullscreen Mobile Menu */}
-            <div
-                className={`fixed top-0 right-0 w-full h-screen bg-white text-black flex flex-col items-center justify-center transition-transform duration-300 z-50 ${menuOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
+        {/* Zone 2: 5 single-line clean navigation links */}
+        <nav
+          aria-label="Primary Navigation"
+          className="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-600"
+        >
+          {navLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="hover:text-[#111113] underline-offset-4 hover:underline transition-colors whitespace-nowrap shrink-0"
             >
-                {/* Close Button */}
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Zone 3: 1-2 primary actions */}
+        <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={onOpenSizeGuide}
+            className="hidden sm:inline-flex items-center px-3.5 py-2 text-xs font-medium text-zinc-700 hover:text-zinc-900 border border-zinc-300/90 rounded-lg hover:bg-zinc-100 transition-colors whitespace-nowrap shrink-0"
+          >
+            Size Guide
+          </button>
+
+          <button
+            type="button"
+            onClick={onOpenCart}
+            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-[#111113] hover:bg-zinc-800 rounded-lg transition-colors whitespace-nowrap shrink-0"
+          >
+            <span>Shopping Bag</span>
+            <span className="font-mono tabular-nums text-zinc-300">
+              ({cartCount})
+            </span>
+          </button>
+
+          {/* Mobile Hamburger Trigger */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            className="lg:hidden p-2 text-zinc-800 hover:bg-zinc-200/60 rounded-lg transition-colors"
+            aria-label="Open navigation menu"
+          >
+            <img src={hamburger} alt="" width={20} height={20} />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="fixed inset-0 bg-black/40"
+            onClick={() => setMenuOpen(false)}
+          />
+          <div className="fixed top-0 right-0 w-72 h-screen bg-[#F8F8F6] text-[#111113] p-6 shadow-2xl flex flex-col justify-between border-l border-zinc-200">
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-zinc-200">
+                <span className="font-display text-base font-bold">
+                  NIKE × YB STUDIOS
+                </span>
                 <button
-                    className="absolute top-6 right-6"
-                    onClick={() => setMenuOpen(false)}
+                  type="button"
+                  onClick={() => setMenuOpen(false)}
+                  className="p-1.5 rounded-md hover:bg-zinc-200/60"
+                  aria-label="Close navigation menu"
                 >
-                    <img src={close} alt="close" width={30} height={30} />
+                  <img src={close} alt="" width={20} height={20} />
                 </button>
+              </div>
 
-                <ul className="flex flex-col gap-6 text-xl text-center">
-                    {navLinks.map((item) => (
-                        <li key={item.label}>
-                            <a
-                                href={item.href}
-                                onClick={() => setMenuOpen(false)}
-                                className="hover:underline"
-                            >
-                                {item.label}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-
-                {/* Github */}
-                <a
-                    href="https://github.com/yash-bandal"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute bottom-6 right-6"
-                >
-                    <img src={github} alt="GitHub" width={25} height={25} className="invert" />
-                </a>
+              <ul className="mt-6 flex flex-col gap-4 text-base font-medium text-zinc-800">
+                {navLinks.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block py-1 hover:text-[#E63926] transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-        </header>
-    );
+
+            <div className="pt-4 border-t border-zinc-200 space-y-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  onOpenSizeGuide();
+                }}
+                className="w-full py-2.5 px-4 text-xs font-semibold text-zinc-800 bg-white border border-zinc-300 rounded-lg hover:bg-zinc-100 whitespace-nowrap"
+              >
+                Open Size Guide
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  onOpenCart();
+                }}
+                className="w-full py-2.5 px-4 text-xs font-semibold text-white bg-[#E63926] rounded-lg hover:bg-[#d12f1d] whitespace-nowrap"
+              >
+                View Shopping Bag ({cartCount})
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 };
 
 export default Nav;

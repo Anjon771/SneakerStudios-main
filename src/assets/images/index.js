@@ -13,6 +13,7 @@ import bigShoe3 from './big-shoe3enc.webp'
 import customer1 from './customer11.png'
 // import customer2 from './customer2.svg'
 import customer2 from './customer31.png'
+import customer3 from './customer3.png'
 
 import footerLogo from './footer-logo.svg'
 import headerLogo from './header-logo.svg'
@@ -42,6 +43,7 @@ export {
 
     customer1,
     customer2,
+    customer3,
 
     footerLogo,
     headerLogo,
